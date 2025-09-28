@@ -1,0 +1,60 @@
+SELECT * 
+FROM Department;
+
+SELECT department_id, department_name
+FROM Department;
+
+SELECT department_id, department_name
+FROM Department
+WHERE department_id > 9050;
+
+SELECT department_id, department_name
+FROM Department
+WHERE department_id < 9060 OR department_name LIKE 'S%';
+
+SELECT department_id, department_name
+FROM Department
+WHERE department_id BETWEEN 9050 AND 9070;
+
+SELECT department_id, department_name
+FROM Department
+ORDER BY department_name ASC;
+
+SELECT department_id, department_name
+FROM Department
+ORDER BY department_id DESC;
+
+SELECT department_id, department_name
+FROM Department
+LIMIT 2;
+
+SELECT * 
+FROM Employees;
+
+SELECT first_name, email
+FROM Employees;
+
+SELECT employee_id, first_name, last_name
+FROM Employees
+WHERE employee_id > 113;
+
+SELECT employee_id, first_name, last_name, department_id
+FROM Employees
+WHERE first_name LIKE 'A%' OR department_id = 9056;
+
+SELECT employee_id, first_name, last_name
+FROM Employees
+WHERE employee_id BETWEEN 113 AND 115;
+
+SELECT employee_id, first_name, last_name
+FROM Employees
+ORDER BY last_name ASC;
+
+SELECT employee_id, first_name, last_name
+FROM Employees
+ORDER BY employee_id DESC;
+
+SELECT employee_id, first_name, last_name, department_id
+FROM Employees
+LIMIT 2;
+
