@@ -1,0 +1,50 @@
+CREATE TABLE departments (
+    dept_id INTEGER PRIMARY KEY,
+    dept_name TEXT,
+    location TEXT
+);
+
+CREATE TABLE employees (
+    emp_id INTEGER PRIMARY KEY,
+    name TEXT,
+    department_id INTEGER,
+    salary REAL,
+    hire_date TEXT,
+    FOREIGN KEY (department_id) REFERENCES departments(dept_id)
+);
+
+INSERT INTO departments (dept_id, dept_name, location) VALUES
+(1, 'HR', 'New York'),
+(2, 'Finance', 'Chicago'),
+(3, 'IT', 'San Francisco'),
+(4, 'Marketing', 'New York');
+
+INSERT INTO employees (emp_id, name, department_id, salary, hire_date) VALUES
+(101, 'Alice', 1, 55000, '2020-05-12'),
+(102, 'Bob', 2, 72000, '2019-03-09'),
+(103, 'Charlie', 3, 68000, '2021-07-01'),
+(104, 'David', 3, 85000, '2018-12-11'),
+(105, 'Eve', 4, 50000, '2022-02-15'),
+(106, 'Frank', 2, 64000, '2021-09-20'),
+(107, 'Grace', 1, 48000, '2023-01-05');
+
+CREATE VIEW dept_avg_salary AS
+SELECT d.dept_name, AVG(e.salary) AS avg_salary
+FROM employees e
+JOIN departments d ON e.department_id = d.dept_id
+GROUP BY d.dept_name;
+
+CREATE VIEW high_earners AS
+SELECT name, salary, department_id
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+CREATE VIEW ny_employees AS
+SELECT e.name, d.dept_name, d.location
+FROM employees e
+JOIN departments d ON e.department_id = d.dept_id
+WHERE d.location = 'New York';
+
+SELECT * FROM dept_avg_salary;
+SELECT * FROM high_earners;
+SELECT * FROM ny_employees;
